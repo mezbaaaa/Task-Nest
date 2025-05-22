@@ -36,7 +36,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            <div className=" flex gap-4 items-center">
+            <div className=" flex gap-4 max-sm:gap-1 items-center">
                 {/* Theme toggle */}
                 <div>
                     <label className="swap swap-rotate" >

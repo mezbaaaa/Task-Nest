@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className='max-sm:px-4'>
-            <footer className="footer footer-horizontal footer-center bg-gradient-to-r from-blue-200 via-pink-100 to-yellow-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-base-content dark:text-gray-200 rounded-xl p-10 shadow-lg">
+            <footer className="footer footer-horizontal footer-center bg-gradient-to-r from-blue-200 via-pink-100 to-yellow-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-base-content dark:text-gray-200 rounded-xl p-10">
                 <aside>
                     <svg
                         width="50"
