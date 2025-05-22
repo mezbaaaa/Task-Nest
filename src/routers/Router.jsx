@@ -3,7 +3,7 @@ import Root from "../layouts/Root";
 import Home from "../pages/Home/Home";
 import Error from "../pages/error/Error";
 import Login from "../pages/Log/Login";
-import SingUp from "../pages/Log/Singup";
+import SingUp from "../pages/Log/SignUp";
 
 export const router = createBrowserRouter([
     {
