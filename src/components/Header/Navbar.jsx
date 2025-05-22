@@ -3,18 +3,18 @@ import logo from '../../assets/computer-worker.png';
 import { useEffect, useState } from 'react';
 
 const Navbar = () => {
-    const [theme,setTheme]=useState(localStorage.getItem('theme')?localStorage.getItem('theme'):'light')
+    const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
-    useEffect(()=>{
-        localStorage.setItem('theme',theme);
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
         const localTheme = localStorage.getItem('theme');
-        document.querySelector('html').setAttribute('data-theme',localTheme);
-    },[theme])
+        document.querySelector('html').setAttribute('data-theme', localTheme);
+    }, [theme])
 
-    const handleThemeToggle=(e)=>{
-        if(e.target.checked){
+    const handleThemeToggle = (e) => {
+        if (e.target.checked) {
             setTheme('dark');
-        }else{
+        } else {
             setTheme('light');
         }
     }
@@ -28,11 +28,13 @@ const Navbar = () => {
                 </NavLink>
             </div>
 
+
             <div className=" hidden lg:flex">
                 <ul className="flex px-1 space-x-4 text-base font-medium">
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-gray-600' : 'text-base-content')} to="/">Home</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-gray-600' : 'text-base-content')} to="/about">About</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-gray-600' : 'text-base-content')} to="/contact">Contact</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/">Home</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/add_task">Add Task</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/browse_tasks">Browse Tasks</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/my_posted_tasks">My Posted Tasks</NavLink></li>
                 </ul>
             </div>
 
@@ -45,8 +47,8 @@ const Navbar = () => {
 
                         {/* sun icon */}
                         <svg
-                            
-                            className="swap-on h-10 w-10 max-sm:h-8 max-sm:w-8 fill-current"
+
+                            className="swap-on h-10 w-10 max-sm:h-8 max-sm:w-8 fill-current text-pink-400"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
                             <path
@@ -55,7 +57,7 @@ const Navbar = () => {
 
                         {/* moon icon */}
                         <svg
-                            className="swap-off h-10 w-10 max-sm:h-8 max-sm:w-8 fill-current"
+                            className="swap-off h-10 w-10 max-sm:h-8 max-sm:w-8 fill-current text-pink-400"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
                             <path
@@ -77,16 +79,17 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content mt-3 z-[50] p-4  bg-base-100 rounded-box w-56 right-0 space-y-2 text-lg font-medium"
                     >
                         <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/about">About</NavLink></li>
-                        <li><NavLink to="/contact">Contact</NavLink></li>
+                        <li><NavLink to="/add_task">Add Task</NavLink></li>
+                        <li><NavLink to="/browse_tasks">Browse Tasks</NavLink></li>
+                        <li><NavLink to="/my_posted_tasks">My Posted Tasks</NavLink></li>
                         <li><NavLink to="/login">Login</NavLink></li>
-                        <li><NavLink to="/register">Register</NavLink></li>
+                        <li><NavLink to="/signup">Sign up</NavLink></li>
                     </ul>
                 </div>
 
                 <div className="hidden md:flex items-center gap-3">
-                    <NavLink to="/login" className="border md:px-3 md:py-1.5 md:rounded-md border-gray-600 bg-gray-500 font-medium text-white">Login</NavLink>
-                    <NavLink to="/register" className="border md:px-3 md:py-1.5 md:rounded-md font-medium border-gray-600">Register</NavLink>
+                    <NavLink to="/login" className="border md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Login</NavLink>
+                    <NavLink to="/signup" className="border md:px-3 md:py-1.5 md:rounded-md font-medium border-gray-600 hover:bg-pink-400 hover:text-base-100 hover:border-pink-400">Sign up</NavLink>
                 </div>
             </div>
         </div>
