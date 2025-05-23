@@ -8,6 +8,7 @@ const Home = () => {
             <div >
                 <p className='text-2xl font-bold'>Welcome to the home page!</p>
             </div>
+            
         </div>
     );
 };
