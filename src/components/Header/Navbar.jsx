@@ -1,8 +1,11 @@
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import logo from '../../assets/computer-worker.png';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const { user, signoutUser } = useContext(AuthContext);
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
     useEffect(() => {
@@ -19,6 +22,17 @@ const Navbar = () => {
         }
     }
 
+    const handleSignOut = ()=>{
+        signoutUser().then(result=>{
+            navigate('/login')
+            const user = result.user
+            console.log(user);
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+
+    }
     return (
         <div className=" flex justify-between items-center bg-base-100 px-4 py-2">
             <div className="">
@@ -31,10 +45,12 @@ const Navbar = () => {
 
             <div className=" hidden lg:flex">
                 <ul className="flex px-1 space-x-4 text-base font-medium">
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/">Home</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/add_task">Add Task</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/browse_tasks">Browse Tasks</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-600' : 'text-base-content')} to="/my_posted_tasks">My Posted Tasks</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-400' : 'text-base-content')} to="/">Home</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-400' : 'text-base-content')} to="/add_task">Add Task</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-400' : 'text-base-content')} to="/browse_tasks">Browse Tasks</NavLink></li>
+                    {
+                        user ? <li><NavLink className={({ isActive }) => (isActive ? ' border md:px-3 md:py-1.5 md:rounded-md border-pink-400' : 'text-base-content')} to="/my_posted_tasks">My Posted Tasks</NavLink></li> : ''
+                    }
                 </ul>
             </div>
 
@@ -65,6 +81,11 @@ const Navbar = () => {
                         </svg>
                     </label>
                 </div>
+                    <div>
+                        {
+                            user?<img src={user?.photoURL} alt="User" className="w-8 h-8 :hidden cursor-pointer md:hidden rounded-full" />:''
+                        }
+                    </div>
 
                 <div className="dropdown dropdown-end md:hidden">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-square">
@@ -76,20 +97,42 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[50] p-4  bg-base-100 rounded-box w-56 right-0 space-y-2 text-lg font-medium"
+                        className="menu border border-pink-400  menu-sm dropdown-content mt-3 z-[50] p-2 rounded-box w-56 right-0 space-y-2 text-lg font-medium bg-white/60 dark:bg-gray-800/60 backdrop-blur-md shadow-lg"
                     >
                         <li><NavLink to="/">Home</NavLink></li>
                         <li><NavLink to="/add_task">Add Task</NavLink></li>
                         <li><NavLink to="/browse_tasks">Browse Tasks</NavLink></li>
-                        <li><NavLink to="/my_posted_tasks">My Posted Tasks</NavLink></li>
-                        <li><NavLink to="/login">Login</NavLink></li>
-                        <li><NavLink to="/signup">Sign up</NavLink></li>
+                        {
+                            user?<li><NavLink to="/my_posted_tasks">My Posted Tasks</NavLink></li> : ''
+                        }
+                        {
+                            user ?
+                                <div>
+                                    <li><p onClick={handleSignOut}>Logout</p></li>
+                                </div> :
+                                <div>
+                                    <li><NavLink to="/login">Login</NavLink></li>
+                                    <li><NavLink to="/signup">Sign up</NavLink></li>
+                                </div>
+                        }
                     </ul>
+
                 </div>
 
-                <div className="hidden md:flex items-center gap-3">
-                    <NavLink to="/login" className="border md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Login</NavLink>
-                    <NavLink to="/signup" className="border md:px-3 md:py-1.5 md:rounded-md font-medium border-gray-600 hover:bg-pink-400 hover:text-base-100 hover:border-pink-400">Sign up</NavLink>
+                <div>
+                    {
+                        user ?
+                        <div className="hidden md:flex items-center gap-3">
+                            <div>
+                                <img src={user?.photoURL} alt="User" className="w-10 h-10 cursor-pointer rounded-full" />
+                            </div>
+                            <button onClick={handleSignOut} className="border cursor-pointer md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Logout</button>
+                        </div> :
+                        <div className="hidden md:flex items-center gap-3">
+                            <NavLink to="/login" className="border md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Login</NavLink>
+                            <NavLink to="/signup" className="border md:px-3 md:py-1.5 md:rounded-md font-medium border-gray-600 hover:bg-pink-400 hover:text-base-100 hover:border-pink-400">Sign up</NavLink>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

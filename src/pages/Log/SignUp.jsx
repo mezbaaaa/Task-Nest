@@ -1,12 +1,15 @@
 import { Eye, EyeOff } from 'lucide-react';
 import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const SingUp = () => {
-    const [show,setShow]=useState(false)
-    const {googleSignIn}= useContext(AuthContext)
+    const [show, setShow] = useState(false)
+    const { googleSignIn } = useContext(AuthContext)
+    const navigate = useNavigate();
+
     const handleSingUp = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -18,14 +21,26 @@ const SingUp = () => {
         const singUpUser = { name, email, photo, password };
         console.log(singUpUser);
     }
-    const handleGoogleLogin=()=>{
-        googleSignIn().then(result=>{
+
+    const handleGoogleLogin = () => {
+        googleSignIn().then(result => {
             const user = result.user;
-            console.log(user);
+            if (user) {
+                Swal.fire({
+                    title: "Login Successful",
+                    text: "You are now logged in!",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: true,
+                    confirmButtonColor: "#f472b6",
+                    timerProgressBar: true
+                });
+                navigate('/');
+            }
         })
-        .catch(error=>{
-            console.log(error);
-        })
+            .catch(error => {
+                console.log(error);
+            })
     }
     return (
         <div className="card bg-gradient-to-br from-blue-100 via-pink-50 to-yellow-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border border-pink-200 dark:border-pink-400 p-6 max-sm:p-2 w-full mx-auto my-10 max-w-sm shrink-0 rounded-2xl">
@@ -49,12 +64,12 @@ const SingUp = () => {
                     </div>
                     <button className=" py-2 rounded-md text-base font-medium cursor-pointer bg-pink-500 hover:bg-pink-500 text-white border-none mt-6 transition">Sign Up</button>
                 </form>
-                <div className='border border-gray-300 dark:border-gray-600 rounded-md cursor-pointer text-center w-full py-2 mt-2 hover:bg-pink-50 dark:hover:bg-gray-700 transition text-gray-700 dark:text-white'>
-                    <p onClick={handleGoogleLogin} className='flex justify-center font-medium text-base items-center gap-2'>
+                <div onClick={handleGoogleLogin} className='border border-gray-300 dark:border-gray-600 rounded-md cursor-pointer text-center w-full py-2 mt-2 hover:bg-pink-50 dark:hover:bg-gray-700 transition text-gray-700 dark:text-white'>
+                    <p  className='flex justify-center font-medium text-base items-center gap-2'>
                         <FcGoogle size={21} />Login with Google
                     </p>
                 </div>
-                <p  className='font-medium mt-4 text-center text-gray-800 dark:text-gray-200'>
+                <p className='font-medium mt-4 text-center text-gray-800 dark:text-gray-200'>
                     Already have an account?{' '}
                     <Link to="/login" className='text-pink-600 dark:text-pink-300 underline hover:text-pink-800 dark:hover:text-pink-400 transition'>
                         Login

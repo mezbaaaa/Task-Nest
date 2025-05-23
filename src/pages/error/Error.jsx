@@ -14,7 +14,7 @@ const Error = () => {
                 </p>
                 <Link
                     to="/"
-                    className="bg-blue-500 dark:bg-pink-500 text-white px-4 py-2 rounded-md mt-5 inline-block hover:bg-blue-600 dark:hover:bg-pink-600 transition"
+                    className="bg-blue-500 dark:bg-pink-400 text-white px-4 py-2 rounded-md mt-5 inline-block hover:bg-blue-600 dark:hover:bg-pink-600 transition"
                 >
                     Back to Home
                 </Link>
