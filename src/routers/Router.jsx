@@ -38,7 +38,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my_posted_tasks',
-                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>
+                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>,
+                loader: () => fetch('http://localhost:3000/tasks')
             }
         ]
     },

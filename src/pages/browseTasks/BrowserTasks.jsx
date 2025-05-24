@@ -21,7 +21,7 @@ const BrowserTasks = () => {
             <h1 className="text-3xl font-extrabold text-pink-600 dark:text-pink-300 mb-10 text-center drop-shadow-lg">Browse All Tasks</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {tasksData.length === 0 && (
-                    <p className="col-span-full text-center text-gray-500">No tasks available.</p>
+                    <p className="col-span-full text-center text-3xl font-medium text-gray-500">No tasks available.</p>
                 )}
                 {tasksData.map(task => {
                     const { title, description, budget, deadline, category, _id, id } = task;
