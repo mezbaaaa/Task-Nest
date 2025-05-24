@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const MyPostedTasks = () => {
     const { user } = useContext(AuthContext);
     const allTasks = useLoaderData();
+    const navigate = useNavigate();
 
     // Make myTasks a state variable
     const [myTasks, setMyTasks] = useState(
@@ -14,13 +15,19 @@ const MyPostedTasks = () => {
 
     // SweetAlert handlers
     const handleUpdate = (task) => {
+        console.log("Update task:", task);
         Swal.fire({
             title: 'Update Task',
             text: `You clicked update for "${task.title}"`,
             icon: 'info',
             confirmButtonColor: "#f472b6",
             background: "#fff0f5",
-            color: "#333"
+            color: "#333",
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate(`/update-task/${task._id}`);
+            }
         });
     };
 
