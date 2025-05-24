@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from "react-slick";   
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Typewriter } from 'react-simple-typewriter';
 import bannerImage1 from '../../assets/10172825_8401.jpg';
 import bannerImage2 from  '../../assets/young-man-home-sitting-chair-working-computer-remote-working-home-office-self-isolation-concept-flat-style-illustration-isolated-white-background_285336-1159.jpg';
 import bannerImage3 from '../../assets/web-devices-concept-illustration_114360-31157.jpg'
@@ -51,30 +52,38 @@ const Banner = () => {
                         />
                         {/* Gradient Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-pink-400/10 to-transparent rounded-xl"></div>
-                            {/* Caption */}
-                            <div className="absolute left-0 right-0 bottom-0 px-6 py-8 sm:px-12 md:px-20 flex flex-col items-start z-10">
-                                <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-pink-400 via-blue-400 to-yellow-400 bg-clip-text text-transparent drop-shadow-lg">
-                                    {banner.caption}
-                                </h2>
-                                <p className="text-base sm:text-lg md:text-2xl font-medium text-white/90 mb-4 drop-shadow">
-                                    {banner.sub}
-                                </p>
-                                {banner.id === 1 && (
-                                    <button className="bg-pink-500 hover:bg-pink-600 text-white cursor-pointer font-semibold px-6 py-2 rounded-full shadow transition-all duration-200">
-                                        Get Started
-                                    </button>
-                                )}
-                                {banner.id === 2 && (
-                                    <button className="bg-blue-500 hover:bg-blue-600 text-white cursor-pointer font-semibold px-6 py-2 rounded-full shadow transition-all duration-200">
-                                        Find Projects
-                                    </button>
-                                )}
-                                {banner.id === 3 && (
-                                    <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 cursor-pointer font-semibold px-6 py-2 rounded-full shadow transition-all duration-200">
-                                        Join Community
-                                    </button>
-                                )}
-                            </div>
+                        {/* Caption */}
+                        <div className="absolute left-0 right-0 bottom-0 px-6 py-8 sm:px-12 md:px-20 flex flex-col items-start z-10">
+                            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-pink-400 via-blue-400 to-yellow-400 bg-clip-text text-transparent drop-shadow-lg">
+                                <Typewriter
+                                    words={[banner.caption]}
+                                    loop={false}
+                                    cursor
+                                    cursorStyle="|"
+                                    typeSpeed={60}
+                                    deleteSpeed={40}
+                                    delaySpeed={1500}
+                                />
+                            </h2>
+                            <p className="text-base sm:text-lg md:text-2xl font-medium text-white/90 mb-4 drop-shadow">
+                                {banner.sub}
+                            </p>
+                            {banner.id === 1 && (
+                                <button className="bg-pink-500 hover:bg-pink-600 text-white cursor-pointer font-semibold px-6 py-2 rounded-full shadow transition-all duration-200">
+                                    Get Started
+                                </button>
+                            )}
+                            {banner.id === 2 && (
+                                <button className="bg-blue-500 hover:bg-blue-600 text-white cursor-pointer font-semibold px-6 py-2 rounded-full shadow transition-all duration-200">
+                                    Find Projects
+                                </button>
+                            )}
+                            {banner.id === 3 && (
+                                <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 cursor-pointer font-semibold px-6 py-2 rounded-full shadow transition-all duration-200">
+                                    Join Community
+                                </button>
+                            )}
+                        </div>
                     </div>
                 ))}
             </Slider>
