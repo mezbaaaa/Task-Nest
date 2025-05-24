@@ -48,6 +48,7 @@ const SignUp = () => {
                     lastSignInTime: user?.metadata?.lastSignInTime,
                     emailVerified: user?.emailVerified,
                     phoneNumber: user?.phoneNumber,
+                    uid: user?.uid
                 }
                 // save user info to database
                 fetch('http://localhost:3000/users', {

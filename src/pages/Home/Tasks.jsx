@@ -28,8 +28,9 @@ const Tasks = ({ tasks = [], onBid }) => {
                 return (
                     <div
                         key={_id || id || title}
-                        className="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-6 transition hover:shadow-2xl border border-pink-100 dark:border-pink-300"
+                        className="bg-white dark:bg-gray-900 shadow-2xl hover:shadow-pink-200 dark:hover:shadow-pink-400/40 hover:-translate-y-1 transition-all duration-300 rounded-2xl p-7 border border-pink-100 dark:border-pink-300 relative overflow-hidden"
                     >
+                        <div className="absolute -top-4 -right-4 opacity-10 text-pink-400 text-8xl pointer-events-none select-none">★</div>
                         <h2 className="text-2xl font-bold mb-2 text-pink-600 dark:text-pink-300">{title}</h2>
                         <p className="text-gray-700 dark:text-gray-200 mb-4">{description}</p>
                         <div className="flex justify-between items-center mb-2">
