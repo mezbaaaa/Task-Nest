@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../../components/Banner/Banner';
 import Tasks from './Tasks';
 import { useLoaderData } from 'react-router';
+import OurService from './OurService';
 
 const Home = () => {
     const tasksData = useLoaderData();
@@ -20,7 +21,7 @@ const Home = () => {
                     </h2>
                     {
                         sortedTasks.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                                 <Tasks tasks={sortedTasks} />
                             </div>
                         ) : (
@@ -29,6 +30,7 @@ const Home = () => {
                     }
                 </div>
             </div>
+            <OurService></OurService>
         </div>
     );
 };
