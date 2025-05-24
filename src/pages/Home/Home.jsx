@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Banner from '../../components/Banner/Banner';
 import Tasks from './Tasks';
 import { useLoaderData } from 'react-router';
 import OurService from './OurService';
 import HowItsWork from './HowItsWork';
 import Stats from './Starts';
+import { AuthContext } from '../../context/AuthContext';
 
 const Home = () => {
     const tasksData = useLoaderData();
+    const { loading } = useContext(AuthContext);
+
+    // Show loader while auth or data is loading
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-[50vh] w-full">
+                <span className="loading loading-spinner loading-lg text-pink-500"></span>
+            </div>
+        );
+    }
+
     // Sort tasks by deadline (earliest first)
     const sortedTasks = [...tasksData].sort(
         (a, b) => new Date(a.deadline) - new Date(b.deadline)
@@ -32,9 +44,9 @@ const Home = () => {
                     }
                 </div>
             </div>
-            <OurService></OurService>
-            <HowItsWork></HowItsWork>
-            <Stats></Stats>
+            <OurService />
+            <HowItsWork />
+            <Stats />
         </div>
     );
 };

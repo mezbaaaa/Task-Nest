@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../context/AuthContext';
 
 const BrowserTasks = () => {
     const tasksData = useLoaderData();
+    const { loading } = useContext(AuthContext);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-[50vh] w-full">
+                <span className="loading loading-spinner loading-lg text-pink-500"></span>
+            </div>
+        );
+    }
 
     const handleBid = (task) => {
         Swal.fire({
