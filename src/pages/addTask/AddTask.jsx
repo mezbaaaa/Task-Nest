@@ -72,10 +72,10 @@ const AddTask = () => {
     const { user } = useContext(AuthContext);
 
     return (
-        <div className="px-4">
+        <div className="px-4 max-sm:mb-8 mb-16">
             <div className="text-center my-8">
                 <h1 className="text-4xl md:text-5xl font-semibold text-pink-600 dark:text-pink-300">Add New Task</h1>
-                <p className="mt-4 max-w-2xl dark:text-gray-300 mx-auto">
+                <p className="mt-4 max-w-2xl mx-auto">
                     Post your task and connect with top freelancers. Fill in the details below to get started!
                 </p>
             </div>
@@ -134,8 +134,7 @@ const AddTask = () => {
                     <label className="label text-gray-700 dark:text-gray-200">Description</label>
                     <textarea
                         name="description"
-                        rows={7}
-                        className="input w-full focus:outline-none bg-white dark:bg-gray-900 text-gray-800 dark:text-white border border-pink-200 dark:border-pink-300 resize-none"
+                        className="input w-full h-30 focus:outline-none bg-white dark:bg-gray-900 text-gray-800 dark:text-white border border-pink-200 dark:border-pink-300 resize-none"
                         placeholder="Describe what needs to be done"
                         required
                     ></textarea>

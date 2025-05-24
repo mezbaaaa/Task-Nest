@@ -16,7 +16,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
+                loader: () => fetch('http://localhost:3000/tasks')
             },
             {
                 path: 'login',
@@ -32,7 +33,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'browse_tasks',
-                element: <BrowserTasks></BrowserTasks>
+                element: <BrowserTasks></BrowserTasks>,
+                loader: () => fetch('http://localhost:3000/tasks')
             },
             {
                 path: 'my_posted_tasks',
