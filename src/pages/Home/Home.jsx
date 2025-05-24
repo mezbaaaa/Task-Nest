@@ -3,6 +3,7 @@ import Banner from '../../components/Banner/Banner';
 import Tasks from './Tasks';
 import { useLoaderData } from 'react-router';
 import OurService from './OurService';
+import HowItsWork from './HowItsWork';
 
 const Home = () => {
     const tasksData = useLoaderData();
@@ -31,6 +32,7 @@ const Home = () => {
                 </div>
             </div>
             <OurService></OurService>
+            <HowItsWork></HowItsWork>
         </div>
     );
 };
