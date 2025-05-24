@@ -17,7 +17,7 @@ const Update = () => {
         // Make sure deadline is in proper ISO format before sending
         newUpdatedTask.deadline = new Date(newUpdatedTask.deadline).toISOString();
 
-        fetch(`http://localhost:3000/update-task/${_id}`, {
+        fetch(`https://freelance-task-marketplace-server-pi.vercel.app/update-task/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

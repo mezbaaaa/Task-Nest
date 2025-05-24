@@ -4,12 +4,13 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 const Navbar = () => {
+    const [showTooltip, setShowTooltip] = useState(false);
     const navigate = useNavigate();
     const { user, signoutUser } = useContext(AuthContext);
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
     useEffect(() => {
-    localStorage.setItem('theme', theme);
+        localStorage.setItem('theme', theme);
         const localTheme = localStorage.getItem('theme');
         document.querySelector('html').setAttribute('data-theme', localTheme);
     }, [theme])
@@ -21,16 +22,16 @@ const Navbar = () => {
             setTheme('light');
         }
     }
-    
-    const handleSignOut = ()=>{
-        signoutUser().then(result=>{
+
+    const handleSignOut = () => {
+        signoutUser().then(result => {
             navigate('/login')
             const user = result.user
             console.log(user);
         })
-        .catch(error=>{
-            console.log(error);
-        })
+            .catch(error => {
+                console.log(error);
+            })
 
     }
     return (
@@ -81,11 +82,11 @@ const Navbar = () => {
                         </svg>
                     </label>
                 </div>
-                    <div>
-                        {
-                            user?<img src={user?.photoURL} alt="User" className="w-8 h-8 :hidden cursor-pointer md:hidden rounded-full" />:''
-                        }
-                    </div>
+                <div>
+                    {
+                        user ? <img src={user?.photoURL} alt="User" className="w-8 h-8 :hidden cursor-pointer md:hidden rounded-full" /> : ''
+                    }
+                </div>
 
                 <div className="dropdown dropdown-end md:hidden">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-square">
@@ -103,7 +104,7 @@ const Navbar = () => {
                         <li><NavLink to="/add_task">Add Task</NavLink></li>
                         <li><NavLink to="/browse_tasks">Browse Tasks</NavLink></li>
                         {
-                            user?<li><NavLink to="/my_posted_tasks">My Posted Tasks</NavLink></li> : ''
+                            user ? <li><NavLink to="/my_posted_tasks">My Posted Tasks</NavLink></li> : ''
                         }
                         {
                             user ?
@@ -122,16 +123,28 @@ const Navbar = () => {
                 <div>
                     {
                         user ?
-                        <div className="hidden md:flex items-center gap-3">
-                            <div>
-                                <img src={user?.photoURL} alt="User" className="w-10 h-10 cursor-pointer rounded-full" />
+                            <div className="hidden md:flex items-center gap-3">
+                                <div className="relative  inline-block">
+                                    <img
+                                        src={user?.photoURL}
+                                        alt="User"
+                                        className="w-11 p-1 border border-gray-300 h-11 cursor-pointer rounded-full"
+                                        onClick={() => setShowTooltip(!showTooltip)}
+                                    />
+                                    {showTooltip && (
+                                        <div className="absolute border text-center left-1/2 top-full mt-2 transform -translate-x-1/2 bg-white dark:bg-gray-800 text-black dark:text-white p-2 rounded-lg shadow-md z-50 w-60">
+                                            <p className="font-semibold">{user?.displayName || "No Name"}</p>
+                                            <p className="text-sm text-gray-500 mt-1 dark:text-gray-300">{user?.email || "No Email"}</p>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <button onClick={handleSignOut} className="border cursor-pointer md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Logout</button>
+                            </div> :
+                            <div className="hidden md:flex items-center gap-3">
+                                <NavLink to="/login" className="border md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Login</NavLink>
+                                <NavLink to="/signup" className="border md:px-3 md:py-1.5 md:rounded-md font-medium border-gray-600 hover:bg-pink-400 hover:text-base-100 hover:border-pink-400">Sign up</NavLink>
                             </div>
-                            <button onClick={handleSignOut} className="border cursor-pointer md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Logout</button>
-                        </div> :
-                        <div className="hidden md:flex items-center gap-3">
-                            <NavLink to="/login" className="border md:px-3 md:py-1.5 md:rounded-md border-pink-500 bg-pink-500 font-medium text-white">Login</NavLink>
-                            <NavLink to="/signup" className="border md:px-3 md:py-1.5 md:rounded-md font-medium border-gray-600 hover:bg-pink-400 hover:text-base-100 hover:border-pink-400">Sign up</NavLink>
-                        </div>
                     }
                 </div>
             </div>

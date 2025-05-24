@@ -25,7 +25,7 @@ const handleSubmit = e => {
     taskData.deadline = formData.get('deadline') || new Date().toISOString();
     taskData.description = formData.get('description') || "";
     taskData.budget = formData.get('budget') || 0;
-    fetch('http://localhost:3000/tasks', {
+    fetch('https://freelance-task-marketplace-server-pi.vercel.app/tasks', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

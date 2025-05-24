@@ -17,7 +17,7 @@ const SignUp = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const {name, email, password, photo, ...restFormData } = Object.fromEntries(formData);
+        const { name, email, password, photo, ...restFormData } = Object.fromEntries(formData);
         setPassError('');
 
         if (!/[A-Z]/.test(password)) {
@@ -51,7 +51,7 @@ const SignUp = () => {
                     uid: user?.uid
                 }
                 // save user info to database
-                fetch('http://localhost:3000/users', {
+                fetch('https://freelance-task-marketplace-server-pi.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

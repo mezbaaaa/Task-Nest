@@ -44,22 +44,22 @@ const MyPostedTasks = () => {
             color: "#333"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/tasks/${task._id}`, {
+                fetch(`https://freelance-task-marketplace-server-pi.vercel.app/tasks/${task._id}`, {
                     method: 'DELETE',
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your task has been deleted.",
-                            icon: "success"
-                        });
-                        // Update state to remove deleted task
-                        const remainingTasks = myTasks.filter(t => t._id !== task._id);
-                        setMyTasks(remainingTasks);
-                    }
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your task has been deleted.",
+                                icon: "success"
+                            });
+                            // Update state to remove deleted task
+                            const remainingTasks = myTasks.filter(t => t._id !== task._id);
+                            setMyTasks(remainingTasks);
+                        }
+                    });
             }
         });
     };
