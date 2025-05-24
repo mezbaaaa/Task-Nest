@@ -17,12 +17,7 @@ const SignUp = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const photo = formData.get('photo');
-        const password = formData.get('password');
-        const userInfo = { name, email, photo, password };
-        console.log(userInfo);
+        const { email, password, photo, ...restFormData } = Object.fromEntries(formData);
         setPassError('');
 
         if (!/[A-Z]/.test(password)) {
@@ -45,18 +40,39 @@ const SignUp = () => {
                     displayName: name,
                     photoURL: photo
                 });
-                if (user) {
-                    Swal.fire({
-                        title: "Sign Up Successful",
-                        text: "You are now registered!",
-                        icon: "success",
-                        timer: 2000,
-                        showConfirmButton: true,
-                        confirmButtonColor: "#f472b6",
-                        timerProgressBar: true
-                    });
-                    navigate('/');
+                const userInfo = {
+                    email,
+                    ...restFormData,
+                    photoURL: photo,
+                    creationTime: user?.metadata?.creationTime,
+                    lastSignInTime: user?.metadata?.lastSignInTime,
+                    emailVerified: user?.emailVerified,
+                    phoneNumber: user?.phoneNumber,
                 }
+                // save user info to database
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...userInfo })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data after login', data);
+                        if (data.acknowledged) {
+                            Swal.fire({
+                                title: "User Created",
+                                text: "You are now registered!",
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: true,
+                                confirmButtonColor: "#f472b6",
+                                timerProgressBar: true
+                            });
+                            navigate('/');
+                        }
+                    });
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {

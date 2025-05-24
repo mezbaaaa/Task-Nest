@@ -4,11 +4,20 @@ import { useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const PrivateRoutes = ({children}) => {
-    const {user}= useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext); // <-- add loading from context
     const location = useLocation();
     const navigate = useNavigate();
 
-    if(!user){
+    // Wait for auth state to finish loading
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center my-auto h-screen">
+                <span className="loading loading-spinner loading-lg text-pink-500"></span>
+            </div>
+        );
+    }
+
+    if (!user) {
         Swal.fire({
             title: "Login Required",
             text: "You need to login to access this page.",
@@ -19,8 +28,7 @@ const PrivateRoutes = ({children}) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 navigate('/login', { state: { from: location }, replace: true });
-            }
-            else{
+            } else {
                 navigate('/login');
             }
         });

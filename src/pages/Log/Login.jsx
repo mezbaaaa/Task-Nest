@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
     const [show, setShow] = useState(false)
-    const { googleSignIn } = useContext(AuthContext)
+    const { googleSignIn, signInUser } = useContext(AuthContext)
     const navigate = useNavigate();
 
     const handleLogin = e => {
@@ -18,6 +18,35 @@ const Login = () => {
         const password = formData.get('password');
         const loggedInUser = { email, password }
         console.log(loggedInUser);
+        signInUser(email, password).then(result => {
+            const user = result.user;
+            if (user) {
+                Swal.fire({
+                    title: "Login Successful",
+                    text: "You are now logged in!",
+                    icon: "success",
+                    timer: 2000,
+                });
+                navigate('/');
+            }
+        }).catch(error => {
+            console.log(error.code);
+            let message = "Something went wrong. Please try again.";
+            if (error.code === 'auth/wrong-password') {
+                message = "Incorrect password. Please try again.";
+            } else if (error.code === 'auth/user-not-found') {
+                message = "No user found with this email.";
+            }
+
+            Swal.fire({
+                title: "Login Failed",
+                text: message,
+                icon: "error",
+                confirmButtonText: "Try Again",
+                confirmButtonColor: "#f472b6",
+            });
+        });
+
     }
     const handleGoogleLogin = () => {
         googleSignIn().then(result => {
