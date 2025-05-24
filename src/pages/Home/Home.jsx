@@ -4,6 +4,7 @@ import Tasks from './Tasks';
 import { useLoaderData } from 'react-router';
 import OurService from './OurService';
 import HowItsWork from './HowItsWork';
+import Stats from './Starts';
 
 const Home = () => {
     const tasksData = useLoaderData();
@@ -33,6 +34,7 @@ const Home = () => {
             </div>
             <OurService></OurService>
             <HowItsWork></HowItsWork>
+            <Stats></Stats>
         </div>
     );
 };
