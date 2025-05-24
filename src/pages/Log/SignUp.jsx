@@ -17,7 +17,7 @@ const SignUp = () => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const { email, password, photo, ...restFormData } = Object.fromEntries(formData);
+        const {name, email, password, photo, ...restFormData } = Object.fromEntries(formData);
         setPassError('');
 
         if (!/[A-Z]/.test(password)) {

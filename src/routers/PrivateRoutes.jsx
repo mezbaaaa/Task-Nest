@@ -4,11 +4,10 @@ import { useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const PrivateRoutes = ({children}) => {
-    const { user, loading } = useContext(AuthContext); // <-- add loading from context
+    const { user, loading } = useContext(AuthContext); 
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Wait for auth state to finish loading
     if (loading) {
         return (
             <div className="flex justify-center items-center my-auto h-screen">

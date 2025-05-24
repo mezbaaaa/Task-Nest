@@ -9,7 +9,7 @@ const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
     useEffect(() => {
-        localStorage.setItem('theme', theme);
+    localStorage.setItem('theme', theme);
         const localTheme = localStorage.getItem('theme');
         document.querySelector('html').setAttribute('data-theme', localTheme);
     }, [theme])
@@ -21,7 +21,7 @@ const Navbar = () => {
             setTheme('light');
         }
     }
-
+    
     const handleSignOut = ()=>{
         signoutUser().then(result=>{
             navigate('/login')
