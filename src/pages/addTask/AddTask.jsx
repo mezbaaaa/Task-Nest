@@ -14,7 +14,59 @@ const categories = [
 
 const handleSubmit = e => {
     e.preventDefault();
-
+    const form = e.target;
+    const formData = new FormData(form);
+    const taskData = Object.fromEntries(formData);
+    taskData.userName = formData.get('userName');
+    taskData.userEmail = formData.get('userEmail');
+    taskData.status = "pending";
+    taskData.bids = [];
+    taskData.category = formData.get('category') || "Other";
+    taskData.deadline = formData.get('deadline') || new Date().toISOString();
+    taskData.description = formData.get('description') || "";
+    taskData.budget = formData.get('budget') || 0;
+    fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(taskData)
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.acknowledged) {
+                form.reset();
+                Swal.fire({
+                    title: "Task Added!",
+                    text: "Your task has been posted successfully.",
+                    icon: "success",
+                    confirmButtonColor: "#f472b6",
+                    background: "#fff0f5",
+                    color: "#333"
+                });
+            } else {
+                Swal.fire({
+                    title: "Failed!",
+                    text: "Failed to add task. Please try again.",
+                    icon: "error",
+                    confirmButtonColor: "#f472b6",
+                    background: "#fff0f5",
+                    color: "#333"
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Add Task Error:", error);
+            Swal.fire({
+                title: "Error!",
+                text: "An error occurred while adding the task.",
+                icon: "error",
+                confirmButtonColor: "#f472b6",
+                background: "#fff0f5",
+                color: "#333"
+            });
+        });
+};
 
 const AddTask = () => {
     const { user } = useContext(AuthContext);
