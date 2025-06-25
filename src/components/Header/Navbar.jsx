@@ -35,7 +35,7 @@ const Navbar = () => {
 
     }
     return (
-        <div className=" flex justify-between items-center bg-base-100 px-4 py-2">
+        <div className=" flex justify-between items-center  px-4 py-2 border-b border-gray-200 dark:border-gray-700 shadow-md rounded-2xl backdrop-blur-md bg-white/60 dark:bg-gray-800/60">
             <div className="">
                 <NavLink to="/" className="flex items-center gap-3 cursor-pointer">
                     <img src={logo} alt="TaskNest Logo" className="h-10 max-sm:hidden" />

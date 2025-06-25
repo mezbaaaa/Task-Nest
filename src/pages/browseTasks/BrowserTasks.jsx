@@ -33,7 +33,7 @@ const BrowserTasks = () => {
                 <title>Browse Task | TaskNest</title>
             </Helmet>
             <h1 className="text-3xl font-extrabold text-pink-600 dark:text-pink-300 mb-10 text-center drop-shadow-lg">Browse All Tasks</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {tasksData.length === 0 && (
                     <p className="col-span-full text-center text-3xl font-medium text-gray-500">No tasks available.</p>
                 )}

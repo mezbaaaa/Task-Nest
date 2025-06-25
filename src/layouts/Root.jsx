@@ -7,7 +7,7 @@ import '../App.css';
 const Root = () => {
     return (
         <div className='container mx-auto inter'>
-            <header>
+            <header className='sticky top-0'>
                 <Navbar></Navbar>
             </header>
             <main>
