@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
 
 const BrowserTasks = () => {
     const tasksData = useLoaderData();
@@ -28,6 +29,9 @@ const BrowserTasks = () => {
 
     return (
         <div className=" px-4 py-10">
+            <Helmet>
+                <title>Browse Task | TaskNest</title>
+            </Helmet>
             <h1 className="text-3xl font-extrabold text-pink-600 dark:text-pink-300 mb-10 text-center drop-shadow-lg">Browse All Tasks</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {tasksData.length === 0 && (

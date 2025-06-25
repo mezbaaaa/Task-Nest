@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const categories = [
     "Web Development",
@@ -73,6 +74,9 @@ const AddTask = () => {
 
     return (
         <div className="px-4 max-sm:mb-8 mb-16">
+            <Helmet>
+                <title>Add Task | TaskNest</title>
+            </Helmet>
             <div className="text-center my-8">
                 <h1 className="text-4xl md:text-5xl font-semibold text-pink-600 dark:text-pink-300">Add New Task</h1>
                 <p className="mt-4 max-w-2xl mx-auto">

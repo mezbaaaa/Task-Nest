@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const MyPostedTasks = () => {
     const { user } = useContext(AuthContext);
@@ -77,6 +78,9 @@ const MyPostedTasks = () => {
 
     return (
         <div className="px-4 py-10 max-w-7xl mx-auto">
+            <Helmet>
+                <title>my posted task | TaskNest</title>
+            </Helmet>
             <h2 className="text-3xl font-extrabold text-pink-600 dark:text-pink-300 mb-10 text-center drop-shadow-lg">My Posted Tasks</h2>
             {
                 myTasks.length > 0 ? (

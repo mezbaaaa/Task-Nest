@@ -6,6 +6,7 @@ import OurService from './OurService';
 import HowItsWork from './HowItsWork';
 import Stats from './Starts';
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     const tasksData = useLoaderData();
@@ -27,6 +28,9 @@ const Home = () => {
 
     return (
         <div className="flex flex-col items-center justify-center my-10">
+            <Helmet>
+                <title>Home | TaskNest</title>
+            </Helmet>
             <Banner />
             <div>
                 <div>
