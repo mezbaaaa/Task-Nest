@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router';
-import Swal from 'sweetalert2';
+import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
 import { Helmet } from 'react-helmet';
 
 const BrowserTasks = () => {
     const tasksData = useLoaderData();
     const { loading } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     if (loading) {
         return (
@@ -15,17 +15,6 @@ const BrowserTasks = () => {
             </div>
         );
     }
-
-    const handleBid = (task) => {
-        Swal.fire({
-            title: 'Bid Placed!',
-            html: `You have placed a bid for <span class="font-bold">${task.title}</span>.`,
-            icon: 'success',
-            confirmButtonColor: "#f472b6",
-            background: "#fff0f5",
-            color: "#333"
-        });
-    };
 
     return (
         <div className=" px-4 py-10">
@@ -58,10 +47,10 @@ const BrowserTasks = () => {
                                     {category}
                                 </span>
                                 <button
-                                    onClick={() => handleBid(task)}
+                                    onClick={() => navigate(`/task/${_id || id}`)}
                                     className="ml-auto bg-gradient-to-r from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer"
                                 >
-                                    Bid Now
+                                    See More
                                 </button>
                             </div>
                         </div>
