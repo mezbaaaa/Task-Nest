@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
 
 const Footer = () => {
-    const {user} = useContext(AuthContext)
+    // const {user} = useContext(AuthContext)
     return (
         <div className='max-sm:px-4'>
             <footer className="footer footer-horizontal footer-center bg-gradient-to-r from-blue-200 via-pink-100 to-yellow-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-base-content dark:text-gray-200 rounded-xl p-10">
@@ -31,14 +31,16 @@ const Footer = () => {
                         <div className="flex gap-4">
                             <Link to="/" className="hover:underline hover:text-pink-500 transition">Home</Link>
                             <Link to={'/'} className="hover:underline hover:text-pink-500 transition">About us</Link>
-                            {
+                            <Link to={'/'} className="hover:underline hover:text-pink-500 transition">Contact</Link>
+                            <Link to={'/'} className="hover:underline hover:text-pink-500 transition">Support </Link>
+                            {/* {
                                 !user ? (
                                     <>
                                         <Link to="/login" className="hover:underline hover:text-pink-500 transition">Login</Link>
                                         <Link to="/signup" className="hover:underline hover:text-pink-500 transition">Sign Up</Link>
                                     </>
                                 ) : ''
-                            }
+                            } */}
                         </div>
                         <div className="flex gap-4 mt-2">
                             <a

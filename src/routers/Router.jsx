@@ -9,6 +9,7 @@ import BrowserTasks from "../pages/browseTasks/BrowserTasks";
 import MyPostedTasks from "../pages/myPostedTasks/MyPostedTasks";
 import PrivateRoutes from "./PrivateRoutes";
 import Update from "../pages/myPostedTasks/Update";
+import TaskDetails from "../pages/TaskDetails";
 
 export const router = createBrowserRouter([
     {
@@ -46,7 +47,12 @@ export const router = createBrowserRouter([
                 path: 'update-task/:id',
                 element: <PrivateRoutes><Update></Update></PrivateRoutes>,
                 loader: ({ params }) => fetch(`https://freelance-task-marketplace-server-pi.vercel.app/update-task/${params.id}`)
-            }
+            },
+            {
+                path: 'task/:id',
+                element:<TaskDetails></TaskDetails> ,
+                loader: ({ params }) => fetch(`https://freelance-task-marketplace-server-pi.vercel.app/tasks/${params.id}`)
+            },
         ]
     },
     {
