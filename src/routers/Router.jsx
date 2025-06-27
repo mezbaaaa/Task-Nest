@@ -11,6 +11,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Update from "../pages/Update";
 import TaskDetails from "../pages/TaskDetails";
 import AboutUs from "../pages/AboutUs";
+import Contact from "../pages/Contact";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: 'about',
                 Component: AboutUs
+            },
+            {
+                path: 'contact',
+                Component: Contact
             }
         ]
     },
