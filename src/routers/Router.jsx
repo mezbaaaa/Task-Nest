@@ -12,6 +12,7 @@ import Update from "../pages/Update";
 import TaskDetails from "../pages/TaskDetails";
 import AboutUs from "../pages/AboutUs";
 import Contact from "../pages/Contact";
+import Support from "../pages/Support";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
             {
                 path: 'contact',
                 Component: Contact
+            },
+            {
+                path: 'support',
+                Component: Support,
             }
         ]
     },
