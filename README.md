@@ -7,7 +7,7 @@ A full-stack freelance task marketplace built with **React**, **Vite**, **Tailwi
 ## Features
 
 - User authentication (Email/Password & Google) via Firebase
-- Post, browse, bid, update, and delete freelance tasks
+- Post, browse, update, and delete freelance tasks
 - View bids on your posted tasks
 - Protected/private routes for user actions
 - Responsive UI with Tailwind CSS
@@ -15,7 +15,7 @@ A full-stack freelance task marketplace built with **React**, **Vite**, **Tailwi
 
 ---
 
-## Tech Stack & Main Packages
+## Tech Stack
 
 ### Frontend
 
@@ -40,17 +40,39 @@ A full-stack freelance task marketplace built with **React**, **Vite**, **Tailwi
 
 ## Getting Started
 
-### 1. Clone the repository
+### 1. Clone the Frontend Repository
 
 ```bash
 git clone https://github.com/mezbaaaa/Task-Nest.git
 cd Task-Nest
 ```
 
-### 2. Backend Repository
-
-You can find the backend code here:
+### 2. Clone the Backend Repository
 
 ```bash
-git clone https://github.com/mezbaaaa/Taks-Nest-server.git
+git clone https://github.com/mezbaaaa/Task-Nest-server.git
 cd Task-Nest-server
+```
+
+---
+
+## Project Structure
+
+```
+Task-Nest/           # Frontend (React)
+Task-Nest-server/    # Backend (Node.js/Express)
+```
+
+---
+
+## Usage
+
+- Configure your environment variables as needed (see `.env.example` in each repo).
+- Start the backend server first, then the frontend.
+- Visit the frontend URL (usually `http://localhost:5173`) to use the app.
+
+---
+
+## License
+
+This project is for educational purposes.
