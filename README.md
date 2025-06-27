@@ -43,5 +43,14 @@ A full-stack freelance task marketplace built with **React**, **Vite**, **Tailwi
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/freelance-task-marketplace.git
-cd freelance-task-marketplace
+git clone https://github.com/mezbaaaa/Task-Nest.git
+cd Task-Nest
+```
+
+### 2. Backend Repository
+
+You can find the backend code here:
+
+```bash
+git clone https://github.com/mezbaaaa/Taks-Nest-server.git
+cd Task-Nest-server
